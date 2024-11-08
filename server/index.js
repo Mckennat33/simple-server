@@ -1,35 +1,37 @@
-const fs = require('fs')
-const path = require('path')
-const http = require('http')
 
-const serveFile = (filePath, contentType, response) => {
-    fs.readfile(filePath, (err, content) => {
-        if (err) {
-            response.writeHead(500)
-            response.end(`error reading ${filePath}`)
-        } else {
-            response.writeHead(200, {'Content-Type': contentType})
-            response.end(content, 'utf-8')
-        }
+
+
+
+console.log('before')
+
+getUser(1, function(user) {
+
+    getRepositories(user.gitHubUserName, (repos) => {
+        console.log("repos", repos)
     })
-}
-
-const server = http.createServer((req, res) => {
-    const url = url.req; 
-    if (url === '/' || url === '/home') {
-        serveFile('../client/home.html', 'text/html', res)
-    }   else if (url === '/about') {
-        serveFile('../client/about.html')
-    }   else if (url === '/contact') {
-        serveFile('../client/contact.html')
-    }   else {
-        res.writeHead(404, {'Content-Type': 'text/html'})
-        res.end('<h1>404 - Page Not Found</h1>');
-    }
 })
 
-const PORT = 3000;
+console.log('after')
 
-server.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
-});
+// callbacks
+// promises
+// async / await
+
+function getUser(id, callback) {
+    setTimeout(() => {
+        console.log("reading a user from a database...")
+        callback(
+            { id: id, gitHubUserName: 'Tom' }
+        )
+    }, 2000);
+    return 1
+}
+
+
+// make this asynchronous 
+function getRepositories(username, callback) {
+    setTimeout(() => {
+        console.log( 'calling github api...')
+        callback( [ 'repo1', 'repo2', 'repo3' ] )
+    }, 2000)
+}
