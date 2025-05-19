@@ -1,9 +1,9 @@
 const express = require('express')
 const router = express.Router()
-const aboutController = require('../about.controllers.js')
+const aboutController = require('../controllers/about.controller.js')
 
 
-router.get('/about', aboutController)
+router.get('/about', aboutController.aboutRoute)
 
 
 module.exports = router; 
