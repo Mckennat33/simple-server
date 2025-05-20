@@ -1,37 +1,39 @@
 
+// making a server
+fs = require('fs')
+const http = require('http')
 
 
-
-console.log('before')
-
-getUser(1, function(user) {
-
-    getRepositories(user.gitHubUserName, (repos) => {
-        console.log("repos", repos)
-    })
+const server = http.createServer((req, res) => {
+    res.write('Response from server')
+    res.end()
 })
 
-console.log('after')
-
-// callbacks
-// promises
-// async / await
-
-function getUser(id, callback) {
-    setTimeout(() => {
-        console.log("reading a user from a database...")
-        callback(
-            { id: id, gitHubUserName: 'Tom' }
-        )
-    }, 2000);
-    return 1
-}
+server.listen((3000), () => {
+    console.log('my server is running')
+})
 
 
-// make this asynchronous 
-function getRepositories(username, callback) {
-    setTimeout(() => {
-        console.log( 'calling github api...')
-        callback( [ 'repo1', 'repo2', 'repo3' ] )
-    }, 2000)
-}
+// writing files 
+// const content = 'content'
+// const moreContent = 'this is more content appended'
+
+
+
+// fs.writeFile("/Users/thomasmckenna/simple-server/server/test.txt", content, err => {
+//     if (err) {
+//         console.log(err) 
+//     } else {
+//         console.log(content)
+//     } 
+// }); 
+
+
+// fs.appendFile("/Users/thomasmckenna/simple-server/server/test.txt", moreContent, err => {
+//     if (err) {
+//         console.log(err) 
+//     } else {
+//         console.log(moreContent)
+//     } 
+// }); 
+
