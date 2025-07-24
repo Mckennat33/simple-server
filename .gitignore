@@ -17,3 +17,5 @@ yarn-error.log*
 # Ignore build artifacts (if using build tools)
 dist/
 build/
+
+node_modules/
