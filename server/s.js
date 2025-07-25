@@ -3,10 +3,10 @@ const app = express()
 const PORT = 3000;
 const path = require('path')
 app.use(express.json())
-app.use(express.static(path.join(__dirname, '../src')))
+app.use(express.static(path.join(__dirname, '../client')))
 // const contactRoute = require('../routes/contact.routes.js')
 
-app.get('/', (req, res) => {
+app.get('/home', (req, res) => {
     try {
         res.sendFile(path.join(__dirname, '../client/home.html'))
     } catch(err) {
@@ -14,7 +14,12 @@ app.get('/', (req, res) => {
     }
 })
 
-app.post('/', (req, res) => {
+app.post('/test', (req, res) => {
+    const { name, username } = req.body
+
+    console.log(name, username)
+
+
     // try {
 
     // } catch(err) {
