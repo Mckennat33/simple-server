@@ -22,7 +22,8 @@ app.get('/home', (req, res) => {
 })
 
 app.get('/object', (req, res) => {
-    
+    const { id, name, username, email } = req.body 
+    res.send('The get request worked')
 })
 
 app.post('/test', (req, res) => {
