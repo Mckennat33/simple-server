@@ -6,12 +6,23 @@ app.use(express.json())
 app.use(express.static(path.join(__dirname, '../client')))
 // const contactRoute = require('../routes/contact.routes.js')
 
+const testObject = {
+    id: 1, 
+    name: 'Jerry', 
+    username: 'UsernameJerry', 
+    email: 'jerryemail@gmail.com'
+}
+
 app.get('/home', (req, res) => {
     try {
         res.sendFile(path.join(__dirname, '../client/home.html'))
     } catch(err) {
         console.log(err)
     }
+})
+
+app.get('/object', (req, res) => {
+    
 })
 
 app.post('/test', (req, res) => {
