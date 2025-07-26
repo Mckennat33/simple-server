@@ -21,9 +21,11 @@ app.get('/home', (req, res) => {
     }
 })
 
-app.get('/object', (req, res) => {
-    const { id, name, username, email } = req.body 
-    res.send('The get request worked')
+app.get('/object/:name', (req, res) => {
+    const { id, name, username, email } = req.params 
+    console.log(req.params)
+    console.log('hello')
+    res.send(`Here is ${name}`)
 })
 
 app.post('/test', (req, res) => {
