@@ -6,7 +6,7 @@ app.use(express.json())
 app.use(express.static(path.join(__dirname, '../client')))
 // const contactRoute = require('../routes/contact.routes.js')
 
-const testObject = {
+const user = {
     id: 1, 
     name: 'Jerry', 
     username: 'UsernameJerry', 
@@ -21,11 +21,11 @@ app.get('/home', (req, res) => {
     }
 })
 
-app.get('/object/:name', (req, res) => {
+app.get('/user', (req, res) => {
     const { id, name, username, email } = req.params 
     console.log(req.params)
     console.log('hello')
-    res.send(`Here is ${name}`)
+    res.send(user)
 })
 
 app.post('/test', (req, res) => {
