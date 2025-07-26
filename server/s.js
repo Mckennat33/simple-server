@@ -15,17 +15,18 @@ app.get('/home', (req, res) => {
 })
 
 app.post('/test', (req, res) => {
-    const { name, username } = req.body
-
+    const { name, username, email } = req.body
+    // res.send(name, username)
+    res.send(`username: ${username}, name: ${name}`)
+    if (!email) {
+        console.log("no email given")
+    } else {
+        console.log(email)
+    }
     console.log(name, username)
-
-
-    // try {
-
-    // } catch(err) {
-    //     console.log(err)
-    // }   
 })
+
+
 
 app.listen(PORT, function(err) {
     if (err) console.log('Error in server setup')
