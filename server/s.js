@@ -6,12 +6,27 @@ app.use(express.json())
 app.use(express.static(path.join(__dirname, '../client')))
 // const contactRoute = require('../routes/contact.routes.js')
 
-const user = {
-    id: 1, 
-    name: 'Jerry', 
-    username: 'UsernameJerry', 
-    email: 'jerryemail@gmail.com'
-}
+const users = [
+    {
+        id: 1, 
+        name: 'Jerry', 
+        username: 'UsernameJerry', 
+        email: 'jerryemail@gmail.com'
+    },  
+    {
+        id: 2, 
+        name: 'Bob', 
+        username: 'UsernameBob', 
+        email: 'Bobemail@gmail.com'
+    }, 
+    {
+        id: 2, 
+        name: 'Mary', 
+        username: 'UsernameMary', 
+        email: 'Maryemail@gmail.com'
+    }    
+]
+    
 
 app.get('/home', (req, res) => {
     try {
@@ -21,10 +36,13 @@ app.get('/home', (req, res) => {
     }
 })
 
-app.get('/user', (req, res) => {
+app.get('/user/:id', (req, res) => {
     const { id, name, username, email } = req.params 
-    console.log(req.params)
-    console.log('hello')
+    
+    const user = users.find(c => c.id === parseInt(req.params.id))
+    if (!user) res.status(404).send("This user doesn't exist")
+    console.log(user)
+
     res.send(user)
 })
 
